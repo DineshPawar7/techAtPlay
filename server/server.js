@@ -1,12 +1,9 @@
-import express from 'express';
+import app from './app.js';
+import { setupDatabase } from './db/database.js';
 
-const app = express();
 const PORT = 5001;
 
-app.get('/', (req, res) => {
-  res.send('server working');
-});
-
-app.listen(PORT, 'localhost', () => {
-  console.log(`server running on http://localhost:${PORT}`);
+app.listen(PORT, async () => {
+    await setupDatabase();
+    console.log(`Backend server is running on http://localhost:${PORT}`);
 });
